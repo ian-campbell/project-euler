@@ -15,54 +15,39 @@ import math
 sequence = '0123456789'
 end_point = 1000000
 
-# create a list
+# create a list of the numbers ['0','1','2'...]
 list_of_numbers = list(sequence)
-working_tally = 0
+
+# set a variable to store the running tally of permutations
+perm_tally = 0
+
+# set a variable to store the current factorial number
 current_factorial = 10
 
-def find_millionth_perm(working_tally, current_factorial):
+# define a recursive function
+def find_millionth_perm(perm_tally, current_factorial, list_of_numbers):
 
-    if working_tally == 1000000:
-        return None
+    if perm_tally == 1000000:
+        print "one"
     
-    # make a variable to keep track of how close we are to 1 million
-
-
-    # make a variable to keep track of which factorial we are on
-
-
-    x = current_factorial
-    x -=1
+    
     p = 10 - current_factorial
 
     myfact = math.factorial(x)
 
-    test_tally = working_tally + myfact
+    test_tally = perm_tally + myfact
 
     if test_tally > end_point:
-        pass
+        x = current_factorial
+        x -=1
     else:
-        working_tally = test_tally
+        perm_tally = test_tally
 
+
+        #this is where i'm stuck, how to update the number
     list_of_numbers[p], list_of_numbers[p+1] = list_of_numbers[p+1], list_of_numbers[p]
-   
+    
 
 
-    print list_of_numbers
-    print working_tally
-
-
-
-
-
-        
-        # break
-
-    # while working_tally < end_point:
-    #     find_millionth_perm(working_tally)
-
-
-
-
-find_millionth_perm(working_tally, current_factorial)
+find_millionth_perm(perm_tally, current_factorial, list_of_numbers)
 
