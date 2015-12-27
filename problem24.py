@@ -12,42 +12,38 @@ import math
 # of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 
 
-sequence = '0123456789'
-end_point = 1000000
+def find_millionth_perm(sequence, permutation_number):
 
-# create a list of the numbers ['0','1','2'...]
-list_of_numbers = list(sequence)
+    # Create a mutable list of the sequence of numbers
+    numbers_list = list(sequence)
 
-# set a variable to store the running tally of permutations
-perm_tally = 0
-
-# set a variable to store the current factorial number
-current_factorial = 10
-
-# define a recursive function
-def find_millionth_perm(perm_tally, current_factorial, list_of_numbers):
-
-    if perm_tally == 1000000:
-        print "one"
+    # Create an empty list in which to store the final answer
+    final_answer = []
     
-    
-    p = 10 - current_factorial
+    while len(numbers_list):
 
-    myfact = math.factorial(x)
+        # On the first loop this is 9! which is 362,880
+        my_factorial = math.factorial(len(numbers_list)-1)
 
-    test_tally = perm_tally + myfact
+        # Find the next number of the final answer
+        digit = permutation_number / my_factorial
 
-    if test_tally > end_point:
-        x = current_factorial
-        x -=1
-    else:
-        perm_tally = test_tally
+        # Update the permutation 
+        permutation_number = permutation_number % my_factorial
+
+        # Update the final answer
+        final_answer.append(numbers_list[digit])
+
+        # Update the working list of numbers
+        numbers_list = numbers_list[0:digit] + numbers_list[digit+1:]
+
+    return final_answer
+
+print find_millionth_perm(range(0,10), 999999)
 
 
-        #this is where i'm stuck, how to update the number
-    list_of_numbers[p], list_of_numbers[p+1] = list_of_numbers[p+1], list_of_numbers[p]
-    
 
 
-find_millionth_perm(perm_tally, current_factorial, list_of_numbers)
+
+
 
